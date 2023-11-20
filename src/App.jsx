@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Menu from "./pages/Menu";
+import DetailMenu from "./pages/DetailMenu";
 
 
 function Profile() {
@@ -42,6 +43,7 @@ function App() {
                         element={<Navigate to="/menu" replace={true} />}
                     />
                     <Route path="/menu" element={<Menu />} />
+                    <Route path="/menu-detail/:id" element={<DetailMenu />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/profile" element={<Profile />} />
                 </Routes>

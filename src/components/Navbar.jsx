@@ -24,6 +24,7 @@ export default function Navbar({ color }) {
 				console.log(res);
 				localStorage.setItem("name",res.data.data.username)
 				localStorage.setItem("token",res.data.data.token)
+				localStorage.setItem("uuid",res.data.data.uuid)
 				setData(res.data.data)
 			})
 			.catch((err) => console.log(err));
