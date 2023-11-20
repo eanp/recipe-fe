@@ -2,7 +2,7 @@ import Navbar from "../../components/Navbar";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const base_url = "https://tiny-toad-teddy.cyclic.app";
+const base_url = import.meta.env.VITE_BASE_URL;
 
 export default function Menu() {
     const [data, setData] = useState();

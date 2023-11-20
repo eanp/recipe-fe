@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
-const base_url = "https://tiny-toad-teddy.cyclic.app";
+const base_url = import.meta.env.VITE_BASE_URL;
 
 export default function Navbar({ color }) {
 	const [data,setData] = useState()
