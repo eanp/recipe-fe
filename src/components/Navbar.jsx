@@ -67,6 +67,13 @@ export default function Navbar({ color }) {
                                 Home
                             </Link>
                         </li>
+                        {data ?
+                        <li className="nav-item active">
+                            <Link to="/add-menu" className="nav-link">
+                                Add Menu
+                            </Link>
+                        </li>
+                        : null}
                         <li className="nav-item">
                             <Link to="/profile" className="nav-link">
                                 profile

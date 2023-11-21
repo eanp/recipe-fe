@@ -40,6 +40,7 @@ export default function DetailMenu() {
             <Navbar color="primary"></Navbar>
             <div className="container">
 				<h1>{data?.title} - {data?.id}</h1>
+				{data?.photo ? <img src={data.photo} width={200} /> : null}
 				{data?.ingredients?.map((item,index)=><h6 key={index+1}>{item}</h6>)}
 
 				{localStorage.getItem("uuid") === data?.users_id ? <>

@@ -10,6 +10,7 @@ import {
 import Navbar from "./components/Navbar";
 import Menu from "./pages/Menu";
 import DetailMenu from "./pages/DetailMenu";
+import AddMenu from "./pages/AddMenu";
 
 
 function Profile() {
@@ -46,6 +47,7 @@ function App() {
                     <Route path="/menu-detail/:id" element={<DetailMenu />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/profile" element={<Profile />} />
+                    <Route path="/add-menu" element={<AddMenu />} />
                 </Routes>
             </BrowserRouter>
         </>
