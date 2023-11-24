@@ -5,6 +5,10 @@ import { useState } from "react";
 import { useEffect } from "react";
 const base_url = import.meta.env.VITE_BASE_URL;
 
+const Username = ({username}) => {
+    return <h1>{username}</h1>
+}
+
 export default function Navbar({ color }) {
 	const [data,setData] = useState()
 	
@@ -86,7 +90,7 @@ export default function Navbar({ color }) {
                         </li>
                     </ul>
                 </div>
-				<h1>{data?.username}</h1>
+				{data?.username && <Username username={localStorage.getItem("name")} />}
 				<button className="btn btn-danger ms-2"  onClick={Login}>
 					{data ?"Logout":"Login"}
 				</button>

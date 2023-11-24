@@ -11,7 +11,8 @@ import Navbar from "./components/Navbar";
 import Menu from "./pages/Menu";
 import DetailMenu from "./pages/DetailMenu";
 import AddMenu from "./pages/AddMenu";
-
+import Login from "./pages/Login";
+import Auth from "./components/Auth";
 
 function Profile() {
     return (
@@ -45,9 +46,9 @@ function App() {
                     />
                     <Route path="/menu" element={<Menu />} />
                     <Route path="/menu-detail/:id" element={<DetailMenu />} />
-                    <Route path="/about" element={<About />} />
-                    <Route path="/profile" element={<Profile />} />
-                    <Route path="/add-menu" element={<AddMenu />} />
+                    <Route path="/about" element={<Auth><About /></Auth>} />
+                    <Route path="/profile" element={<Auth><Profile /></Auth>} />
+                    <Route path="/add-menu" element={<Auth><AddMenu /></Auth>} />
                 </Routes>
             </BrowserRouter>
         </>
