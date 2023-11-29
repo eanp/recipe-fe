@@ -5,8 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { getMenu } from "../../redux/actions/menu";
 import { useSelector, useDispatch } from "react-redux";
 
-const base_url = import.meta.env.VITE_BASE_URL;
-
 export default function Menu() {
     const dispatch = useDispatch();
     const navigate = useNavigate();

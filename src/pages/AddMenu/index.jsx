@@ -3,8 +3,12 @@ import Navbar from "../../components/Navbar";
 import { useNavigate } from "react-router";
 import { useState } from "react";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { addMenu } from "../../redux/actions/menu";
 
 export default function AddMenu() {
+    const dispatch = useDispatch()
+    const menu_add = useSelector((state)=>state.menu_add)
     const navigate = useNavigate();
     const [photo, setPhoto] = useState();
     const [inputData, setInputData] = useState({
@@ -23,19 +27,7 @@ export default function AddMenu() {
       bodyData.append("photo", photo)
       console.log(bodyData)
 
-      axios.post(import.meta.env.VITE_BASE_URL+'/recipe',bodyData,{
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem("token")}`,
-          'Content-Type' : 'multipart/form-data'
-        }
-      }).then((res)=> {
-        console.log("success input data")
-        console.log(res)
-        navigate("/")
-      }).catch((err)=>{
-        console.log("failed input data")
-        console.log(err)
-      })
+      dispatch(addMenu(bodyData,navigate))
     };
 
     const onChange = (e) => {
@@ -75,7 +67,7 @@ export default function AddMenu() {
                         </div>
                     </div>
                     <div className="form-group">
-                        <label for="title">Menu Title</label>
+                        <label htmlFor="title">Menu Title</label>
                         <input
                             type="text"
                             className="form-control"
@@ -86,7 +78,7 @@ export default function AddMenu() {
                         />
                     </div>
                     <div className="form-group">
-                        <label for="title">Category</label>
+                        <label htmlFor="title">Category</label>
                         <select className="form-control">
                             <option value={1}>main course</option>
                             <option value={2}>appetizer</option>
@@ -94,7 +86,7 @@ export default function AddMenu() {
                         </select>
                     </div>
                     <div className="form-group">
-                        <label for="title">Ingredients</label>
+                        <label htmlFor="title">Ingredients</label>
                         <textarea
                             type="text"
                             className="form-control"

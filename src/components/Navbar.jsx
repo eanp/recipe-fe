@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { LoginAction, LogoutAction } from "../redux/actions/auth";
 const base_url = import.meta.env.VITE_BASE_URL;
 
 const Username = ({username}) => {
@@ -10,39 +12,17 @@ const Username = ({username}) => {
 }
 
 export default function Navbar({ color }) {
+    const dispatch = useDispatch()
+    const auth = useSelector((state)=>state.auth)
 	const [data,setData] = useState()
 	
 	const Login = () => {
-		if(localStorage.getItem("name")){
-			setData(null)
-			localStorage.clear()
-			return
-		}
-
-		axios
-			.post(base_url + `/auth/login`,{
-				"email":"member@recipe.com",
-				"password":"test1234"
-			},  {headers: {'content-type': 'application/x-www-form-urlencoded'}})
-			.then((res) => {
-				console.log(res);
-				localStorage.setItem("name",res.data.data.username)
-				localStorage.setItem("token",res.data.data.token)
-				localStorage.setItem("uuid",res.data.data.uuid)
-				setData(res.data.data)
-			})
-			.catch((err) => console.log(err));
-		console.log("axios login");
+        dispatch(LoginAction())
 	}
-
-
-	useEffect(()=>{
-		let item = {
-			username: localStorage.getItem("name"),
-			token: localStorage.getItem("token")
-		}
-		localStorage.getItem("name") && setData(item)
-	},[])
+	
+	const Logout = () => {
+        dispatch(LogoutAction())
+	}
 
 
     return (
@@ -71,7 +51,7 @@ export default function Navbar({ color }) {
                                 Home
                             </Link>
                         </li>
-                        {data ?
+                        {auth.data ?
                         <li className="nav-item active">
                             <Link to="/add-menu" className="nav-link">
                                 Add Menu
@@ -90,9 +70,9 @@ export default function Navbar({ color }) {
                         </li>
                     </ul>
                 </div>
-				{data?.username && <Username username={localStorage.getItem("name")} />}
-				<button className="btn btn-danger ms-2"  onClick={Login}>
-					{data ?"Logout":"Login"}
+				{auth.data?.username && <Username username={auth.data.username} />}
+				<button className="btn btn-danger ms-2"  onClick={auth.data ? Logout : Login}>
+					{auth.data ?"Logout":"Login"}
 				</button>
             </nav>
         </div>
